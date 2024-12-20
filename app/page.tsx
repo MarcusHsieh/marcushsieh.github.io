@@ -1,10 +1,10 @@
 "use client";
 
-import PageWrapper from "@/components/layout/PageWrapper";
-import ParticleNetwork from "@/components/background/ParticleNetwork";
-import Hero from "@/components/sections/Hero";
-import Projects from "@/components/sections/Projects";
-import Contact from "@/components/sections/Contact";
+import PageWrapper from "components/layout/PageWrapper";
+import ParticleNetwork from "components/background/ParticleNetwork";
+import Hero from "components/sections/Hero";
+import Projects from "components/sections/Projects";
+import Contact from "components/sections/Contact";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 

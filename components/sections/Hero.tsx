@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Avatar } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
+import { Avatar } from "components/ui/avatar";
+import { Card } from "components/ui/card";
 import Image from "next/image";
 import { profileConfig } from "@/config/profile";
 import { Github, Linkedin, Mail } from "lucide-react";

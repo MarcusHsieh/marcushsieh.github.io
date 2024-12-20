@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { SocialLink } from "@/types";
+import { Button } from "components/ui/button";
+import { SocialLink } from "types";
 
 interface SocialButtonProps {
   social: SocialLink;

@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
+import { Card } from "components/ui/card";
 import { Github, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { projects } from "@/data/projects";
+import { Button } from "components/ui/button";
+import { projects } from "data/projects";
 import Image from "next/image";
 import Link from "next/link";
 

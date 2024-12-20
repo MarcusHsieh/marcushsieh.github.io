@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card } from "components/ui/card";
+import { Button } from "components/ui/button";
 import { Github, ExternalLink } from "lucide-react";
-import { Project } from "@/types";
-import { fadeInScroll } from "@/lib/animations";
+import { Project } from "types";
+import { fadeInScroll } from "lib/animations";
 import Image from "next/image";
 
 interface ProjectCardProps {

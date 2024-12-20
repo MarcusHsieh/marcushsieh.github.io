@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
+import { Card } from "components/ui/card";
 import ProfileInfo from "./ProfileInfo";
-import { scaleIn } from "@/lib/animations";
-import { profileConfig } from "@/config/profile";
+import { scaleIn } from "lib/animations";
+import { profileConfig } from "config/profile";
 
 export default function Hero() {
   return (

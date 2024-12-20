@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
+import { Card } from "components/ui/card";
 import { Github, Linkedin, Mail } from "lucide-react";
 import SocialButton from "./SocialButton";
-import { SocialLink } from "@/types";
-import { fadeInUp } from "@/lib/animations";
-import { profileConfig } from "@/config/profile";
+import { SocialLink } from "types";
+import { fadeInUp } from "lib/animations";
+import { profileConfig } from "config/profile";
 
 const socialLinks: SocialLink[] = [
   {

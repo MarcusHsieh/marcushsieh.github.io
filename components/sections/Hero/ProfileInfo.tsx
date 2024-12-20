@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar } from "components/ui/avatar";
 import Image from "next/image";
-import { fadeInUpDelayed } from "@/lib/animations";
+import { fadeInUpDelayed } from "lib/animations";
 
 interface ProfileInfoProps {
   imageUrl: string;

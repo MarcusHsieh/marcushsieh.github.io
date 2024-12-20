@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
+import { Card } from "components/ui/card";
 import { Github, Linkedin, Mail } from "lucide-react";
 import SocialButton from "./Contact/SocialButton";
-import { profileConfig } from "@/config/profile";
+import { profileConfig } from "config/profile";
 
 export default function Contact() {
   const socialLinks = [

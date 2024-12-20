@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
-import { projects } from "@/data/projects";
-import { fadeInUp } from "@/lib/animations";
+import { projects } from "data/projects";
+import { fadeInUp } from "lib/animations";
 
 export default function Projects() {
   return (
