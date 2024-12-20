@@ -2,7 +2,7 @@ export const profileConfig = {
   name: "Marcus Hsieh",
   title: "BS Robotics Engineering",
   university: "University of California, Riverside",
-  description: "Marcus Hsieh is a robotics engineer with expertise in developing innovative solutions that integrate mechanical, electrical, and software systems seamlessly. His background combines the core disciplines of robotics engineering (computer science, electrical engineering, and mechanical engineering) enabling him to deliver cutting-edge technologies with a focus on user-centered design and practical applications. Marcus is deeply passionate about creating tools and systems that empower individuals and address meaningful challenges, from advancing accessibility to driving innovation. His work bridges the gap between technology and societal impact, contributing to a better and more connected world.",
+  description: "Marcus Hsieh is a robotics engineer with expertise in developing innovative solutions that seamlessly integrate mechanical, electrical, and software systems. His background in the core disciplines of robotics engineering (computer science, electrical engineering, and mechanical engineering) enables him to tackle complex challenges with a problem-solving mindset. Marcus is equally comfortable working independently or as part of a collaborative team to deliver impactful results. Passionate about creating practical, user-centered tools and systems, Marcus thrives on solving meaningful problems, advancing accessibility, and driving innovation. His work bridges the gap between technology and societal impact, contributing to a more connected and equitable world.",
   imageUrl: "/profile.png",
   social: {
     github: "https://github.com/MarcusHsieh",
