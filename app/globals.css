@@ -78,5 +78,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    will-change: transform, opacity;
   }
+}
+
+canvas {
+  outline: none;
 }
