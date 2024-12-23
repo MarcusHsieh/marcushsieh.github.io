@@ -53,7 +53,7 @@ export default function Hero() {
             <p className="text-lg text-gray-300 mt-2 italic">{university}</p>
           </div>
 
-          {/* Description Section */}
+          {/* desc */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function Hero() {
             {description}
           </motion.p>
 
-          {/* Social Links Section */}
+          {/* socials */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

@@ -21,7 +21,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       className="w-full h-[400px]"
     >
       <Card className="overflow-hidden bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-blue-500 transition-colors h-full flex flex-col">
-        {/* Image Section */}
+        {/* image */}
         {project.image ? (
           <Image
             src={project.image}
@@ -36,7 +36,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         )}
         
-        {/* Content Section */}
+        {/* content */}
         <div className="p-6 flex-grow flex flex-col justify-between">
           <div>
             <h3 className="text-xl font-bold text-white mb-2">
@@ -57,7 +57,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* buttons */}
           <div className="flex gap-4 mt-4">
             {project.github && (
               <Button

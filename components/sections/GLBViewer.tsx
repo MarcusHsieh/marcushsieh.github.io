@@ -73,7 +73,7 @@ export default function GLBViewer({ fileUrl }: GLBViewerProps) {
   return (
     <div className="w-full h-[500px] bg-gray-800 rounded-md overflow-hidden">
       <Canvas
-        camera={{ position: [0, 2, 3] }}
+        camera={{ position: [0, 2, 3] }} 
         gl={{
           antialias: true,
           powerPreference: "high-performance",
