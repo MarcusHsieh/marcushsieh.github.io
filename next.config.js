@@ -10,6 +10,13 @@ const nextConfig = {
   },
   basePath: "",
   assetPrefix: "",
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.stl$/,
+      use: 'file-loader',
+    });
+    return config;
+  },
 };
 
 module.exports = nextConfig;

@@ -7,6 +7,7 @@ import Projects from "components/sections/Projects";
 import Contact from "components/sections/Contact";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import GLBPortfolio from "components/sections/3DViewer/3DPortfolio";
 
 export default function Home() {
   const [ref, inView] = useInView({
@@ -24,18 +25,18 @@ export default function Home() {
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Projects />
         </motion.div>
 
-        {/* <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Contact />
-        </motion.div> */}
+          <GLBPortfolio />
+        </motion.div>
       </main>
     </PageWrapper>
   );

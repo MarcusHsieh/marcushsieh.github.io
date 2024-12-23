@@ -31,14 +31,25 @@ export default function ParticleNetwork() {
       particles.current = Array.from({ length: 50 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 2, // Adjusted speed
-        vy: (Math.random() - 0.5) * 2,
+        vx: (Math.random() - 0.5) * 0.3, // Adjusted speed
+        vy: (Math.random() - 0.5) * 0.3,
       }));
     };
 
+    // const initParticles = () => {
+    //   const particleCount = window.innerWidth > 768 ? 50 : 25;
+    //   particles.current = Array.from({ length: particleCount  }, () => ({
+    //     x: Math.random() * canvas.width,
+    //     y: Math.random() * canvas.height,
+    //     vx: (Math.random() - 0.5) * 0.3,
+    //     vy: (Math.random() - 0.5) * 0.3,
+    //   }));
+    // };
+    
+
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "rgba(255, 255, 255, 0.7)"; // Updated color
+      ctx.fillStyle = "rgba(255, 255, 255, 0.7)"; 
       ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
 
       particles.current.forEach((particle, i) => {
@@ -49,7 +60,7 @@ export default function ParticleNetwork() {
         if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, 3, 0, Math.PI * 2); // Adjusted size
+        ctx.arc(particle.x, particle.y, 3, 0, Math.PI * 2);
         ctx.fill();
 
         particles.current.forEach((particle2, j) => {
@@ -58,7 +69,7 @@ export default function ParticleNetwork() {
           const dy = particle.y - particle2.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) { // Adjusted connection distance
+          if (distance < 120) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particle2.x, particle2.y);
