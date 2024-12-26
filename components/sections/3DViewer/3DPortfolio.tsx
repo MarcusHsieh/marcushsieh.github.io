@@ -28,7 +28,7 @@ export default function GLBPortfolio() {
   };
 
   return (
-    <section className="py-16 px-4 bg-gray-900 relative w-full overflow-hidden">
+    <section className="py-16 px-4 relative w-full overflow-hidden">
       <div className="flex justify-center items-center relative mb-8">
         <h2 className="text-4xl font-bold text-white text-center relative">
           Mechanical Portfolio

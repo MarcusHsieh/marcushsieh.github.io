@@ -1,42 +1,53 @@
 "use client";
 
 import PageWrapper from "components/layout/PageWrapper";
-import ParticleNetwork from "components/background/ParticleNetwork";
 import Hero from "components/sections/Hero";
 import Projects from "components/sections/Projects";
 import Contact from "components/sections/Contact";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
 import GLBPortfolio from "components/sections/3DViewer/3DPortfolio";
+import ParticleNetwork from "components/background/ParticleNetwork";
+import { motion } from "framer-motion";
 
 export default function Home() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   return (
     <PageWrapper>
-      <ParticleNetwork />
-      <main className="min-h-screen bg-gradient-to-b from-gray-900/90 via-gray-800/90 to-gray-900/90">
-        <Hero />
+      <main className="min-h-screen bg-gradient-to-b from-gray-900/90 via-gray-800/90 to-gray-900/90 relative z-10">
         
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <Projects />
-        </motion.div>
+        {/* me */}
+        <section id="hero" className="relative pt-24 scroll-mt-24 overflow-hidden">
+          <ParticleNetwork />
+          <Hero />
+        </section>
 
-        <motion.div
+        {/* technical */}
+        <motion.section
+          id="technical"
           initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="relative overflow-hidden"
         >
+          <ParticleNetwork />
+          <Projects />
+        </motion.section>
+
+        {/* mechanical */}
+        <motion.section
+          id="mechanical"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative overflow-hidden"
+        >
+          <ParticleNetwork />
           <GLBPortfolio />
-        </motion.div>
+        </motion.section>
+
+        {/* contact */}
+        <section id="contact" className="relative overflow-hidden">
+          <ParticleNetwork />
+          <Contact />
+        </section>
       </main>
     </PageWrapper>
   );
