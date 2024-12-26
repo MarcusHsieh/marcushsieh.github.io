@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from 'providers/theme-provider';
+import TopHeader from '@/components/TopHeader';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,7 +25,8 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="portfolio-theme"
         >
-          {children}
+          <TopHeader />
+          <main className="relative z-10">{children}</main>
         </ThemeProvider>
       </body>
     </html>
