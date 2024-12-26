@@ -43,7 +43,7 @@ export default function GLBPortfolio() {
               fadeOut ? "opacity-0" : "opacity-90"
             }`}
           >
-            <div className="relative bg-blue-500 text-white text-sm px-3 py-1 rounded-md shadow-md animate-[pulse_2s_ease-in-out_infinite]">
+            <div className="relative bg-blue-500 text-white text-sm px-3 py-1 rounded-md shadow-md animate-soft-pulse">
               🖱️ You can interact with the 3D objects!
               <button
                 onClick={(e) => {
