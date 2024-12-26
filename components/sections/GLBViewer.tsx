@@ -12,7 +12,6 @@ interface GLBViewerProps {
   ref?: React.RefObject<THREE.Object3D>;
 }
 
-// GLB model component
 const GLBModel = memo(({ fileUrl }: GLBViewerProps) => {
   const { scene } = useLoader(GLTFLoader, fileUrl);
   const modelRef = useRef<THREE.Object3D>(null);
@@ -64,7 +63,7 @@ function DynamicOrbitControls({ modelRef }: { modelRef: React.RefObject<THREE.Ob
     }
   }, [camera, modelRef]);
 
-  return <OrbitControls target={[0, 0, 0]} autoRotate autoRotateSpeed={0.6} />;
+  return <OrbitControls target={[0, -1, 0]} autoRotate autoRotateSpeed={0.6} />;
 }
 
 export default function GLBViewer({ fileUrl }: GLBViewerProps) {
@@ -73,7 +72,7 @@ export default function GLBViewer({ fileUrl }: GLBViewerProps) {
   return (
     <div className="w-full h-[500px] bg-gray-800 rounded-md overflow-hidden">
       <Canvas
-        camera={{ position: [0, 2, 3] }} 
+        camera={{ position: [0, 2, 4] }} 
         gl={{
           antialias: true,
           powerPreference: "high-performance",
@@ -88,7 +87,7 @@ export default function GLBViewer({ fileUrl }: GLBViewerProps) {
         <DynamicOrbitControls modelRef={modelRef} />
 
         <Environment preset="studio" background backgroundBlurriness={0.6} />
-        <axesHelper args={[2]} />
+        {/* <axesHelper args={[2]} /> */}
         {/* <Stats /> */}
       </Canvas>
     </div>

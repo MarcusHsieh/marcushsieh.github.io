@@ -33,4 +33,12 @@ export const projects: Project[] = [
     demo: "",
     tags: ["C++", "CMake", "Google Test", "Valgrind"],
   },
+  {
+    title: "FSAE Airfoil Wing Generator",
+    description: "A computational tool for designing and analyzing airfoil wings for Formula SAE cars, optimized for aerodynamics and structural performance.",
+    image: "/E423.png",
+    github: "https://github.com/MarcusHsieh/fsae-airfoil-wing-generator_v1",
+    demo: "",
+    tags: ["Python", "Matplotlib", "Aerodynamics", "Data Analysis"],
+  },
 ];
