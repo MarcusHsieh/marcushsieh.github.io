@@ -11,6 +11,12 @@ export const glbModels = [
         fileUrl: "/models/front-wing.glb",
         description: "Front wing assembly, designed in MATLAB and Solidworks with custom airfoils (E423) and endplates.",
     },
+    {
+        id: "model3",
+        name: "Drone v0.1",
+        fileUrl: "/models/drone-v1.0.glb",
+        description: "Assembled quadrotor drone with PDB, Raspberry Pi, camera, motors, and 5-inch propellers. Includes a modular X-frame design with detachable arms.",
+    },
     // {
     //     id: "model3",
     //     name: "car with flow sim?",

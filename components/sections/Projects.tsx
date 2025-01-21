@@ -54,7 +54,7 @@ export default function Projects() {
                   </div>
                   <div className="flex gap-4">
                     {project.github && (
-                      <Link href={project.github} passHref>
+                      <Link href={project.github} target="_blank" passHref>
                         <Button variant="outline" size="sm" asChild>
                           <a target="_blank">
                             <Github className="w-4 h-4 mr-2" />
@@ -64,7 +64,7 @@ export default function Projects() {
                       </Link>
                     )}
                     {project.demo && (
-                      <Link href={project.demo} passHref>
+                      <Link href={project.demo} target="_blank" passHref>
                         <Button variant="outline" size="sm" asChild>
                           <a target="_blank">
                             <ExternalLink className="w-4 h-4 mr-2" />
