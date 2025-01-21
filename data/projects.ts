@@ -18,6 +18,14 @@ export const projects: Project[] = [
     tags: ["OpenCV", "Python", "Raspberry Pi", "Arduino", "3D Printing"],
   },
   {
+    title: "Raspbery Pi Wi-Fi Router",
+    description: "A customizable Raspberry Pi-based Wi-Fi router with a built-in web interface for managing connections. Supports both WPA2 Enterprise and standard WPA2 networks.",
+    image: "/wifi-router.jpg", 
+    github: "https://github.com/MarcusHsieh/rpi-wifi-router",
+    demo: "",
+    tags: ["Python", "Flask", "Raspberry Pi", "HTML", "CSS"],
+  },
+  {
     title: "YumTogether",
     description: "A solution to circumvent data security concerns in AI-assisted health counseling, featuring a containerized local LLM for secure data handling. Won 1st place research poster at the 2024 UCF Artificial Intelligence in Medicine Summit.",
     image: "/yum-together.png", 
