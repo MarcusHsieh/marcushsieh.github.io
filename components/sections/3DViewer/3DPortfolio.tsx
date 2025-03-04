@@ -28,16 +28,22 @@ export default function GLBPortfolio() {
 
   return (
     <section className="py-16 px-4 relative w-full overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="flex justify-center items-center relative mb-8"
+        transition={{ duration: 0.5 }}
+        className="text-4xl font-bold text-white mb-2 text-center"
       >
-        <h2 className="text-4xl font-bold text-white text-center">
-          Mechanical Portfolio
-        </h2>
-      </motion.div>
+        Mechanical Portfolio
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-center text-sm text-gray-400 mb-8"
+      >
+        Interact with the 3D models below to view them in detail.
+      </motion.p>
 
       <div className="flex flex-wrap justify-center gap-8">
         {glbModels.map((model, index) => (
