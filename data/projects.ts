@@ -23,7 +23,7 @@ export const projects: Project[] = [
     images: ["/labeling-tool/image-1.png", "/labeling-tool/image-2.png", "/labeling-tool/image-3.png", "/labeling-tool/image-4.png"], 
     github: "https://github.com/MarcusHsieh/Labeling-Tool",
     demo: "",
-    tags: [],
+    tags: ["Computer Vision", "Python", "PyQt", "Bounding Box", "Classification"],
   },
   {
     title: "MOLL-E Autonomous Shopping Cart",
