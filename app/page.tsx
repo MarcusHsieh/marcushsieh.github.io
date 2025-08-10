@@ -22,9 +22,10 @@ export default function Home() {
         {/* technical */}
         <motion.section
           id="technical"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           className="relative overflow-hidden"
         >
           <ParticleNetwork />
@@ -34,9 +35,10 @@ export default function Home() {
         {/* mechanical */}
         <motion.section
           id="mechanical"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1], delay: 0.2 }}
           className="relative overflow-hidden"
         >
           <ParticleNetwork />

@@ -6,8 +6,11 @@ import { glbModels } from "data/glbModels";
 import { Card } from "components/ui/card";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
+import { useScrollDirection } from "hooks/useScrollDirection";
+import { createDirectionalAnimation } from "lib/animations";
 
 export default function GLBPortfolio() {
+  const scrollDirection = useScrollDirection();
   const [showTooltip, setShowTooltip] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -29,9 +32,7 @@ export default function GLBPortfolio() {
   return (
     <section className="py-16 px-4 relative w-full overflow-hidden">
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        {...createDirectionalAnimation(scrollDirection)}
         className="text-4xl font-bold text-white mb-2 text-center"
       >
         Mechanical Portfolio
@@ -39,7 +40,8 @@ export default function GLBPortfolio() {
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
         className="text-center text-sm text-gray-400 mb-8"
       >
         Interact with the 3D models below to view them in detail.
@@ -49,10 +51,14 @@ export default function GLBPortfolio() {
         {glbModels.map((model, index) => (
           <motion.div
             key={model.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            {...createDirectionalAnimation(scrollDirection)}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.15, 
+              ease: [0.25, 0.4, 0.25, 1] 
+            }}
             className="max-w-md flex-1"
+            whileHover={{ y: -8, scale: 1.02 }}
           >
             <Card className="flex flex-col p-4 bg-gray-800 border border-gray-700 rounded-md overflow-hidden bg-gray-800/50 backdrop-blur-sm hover:border-blue-500 transition-colors h-full justify-start">
               <h3 className="text-xl text-white font-semibold mb-2">{model.name}</h3>

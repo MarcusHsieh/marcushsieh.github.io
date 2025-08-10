@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from 'providers/theme-provider';
 import TopHeader from '@/components/TopHeader';
+import { PerformanceProvider } from '@/providers/performance-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,8 +29,10 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="portfolio-theme"
         >
-          <TopHeader />
-          <main className="relative z-10">{children}</main>
+          <PerformanceProvider>
+            <TopHeader />
+            <main className="relative z-10">{children}</main>
+          </PerformanceProvider>
         </ThemeProvider>
       </body>
     </html>

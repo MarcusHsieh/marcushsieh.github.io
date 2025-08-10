@@ -29,16 +29,16 @@ export default function Hero() {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-12">
-      <Card className="max-w-4xl w-full bg-gray-800/60 backdrop-blur-sm border-gray-700 p-8 rounded-lg shadow-lg">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12">
+      <Card className="max-w-4xl w-full bg-gray-800/60 backdrop-blur-sm border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center space-y-6"
+          transition={{ duration: 1, ease: [0.25, 0.4, 0.25, 1] }}
+          className="text-center space-y-4 sm:space-y-6"
         >
           {/* Profile Section */}
-          <Avatar className="w-48 h-48 mx-auto mb-4 border-4 border-blue-500">
+          <Avatar className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-2 sm:mb-4 border-4 border-blue-500">
             <Image
               src={imageUrl}
               alt={`${name}'s Profile Picture`}
@@ -48,27 +48,27 @@ export default function Hero() {
             />
           </Avatar>
           <div>
-            <h1 className="text-4xl font-bold text-white">{name}</h1>
-            <p className="text-xl text-blue-400">{title}</p>
-            <p className="text-lg text-gray-300 mt-2 italic">{university}</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">{name}</h1>
+            <p className="text-lg sm:text-xl text-blue-400">{title}</p>
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 mt-1 sm:mt-2 italic">{university}</p>
           </div>
 
           {/* desc */}
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto"
+            transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+            className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto px-2 sm:px-0"
           >
             {description}
           </motion.p>
 
           {/* socials */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-4 mt-6"
+            transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-4 sm:mt-6"
           >
             {socialLinks.map((social) => (
               <a
@@ -76,10 +76,10 @@ export default function Hero() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-4 py-2 bg-gray-700/70 hover:bg-gray-700 text-gray-300 hover:text-white border border-gray-600 rounded-lg transition"
+                className="flex items-center justify-center px-4 py-2 bg-gray-700/70 hover:bg-gray-700 text-gray-300 hover:text-white border border-gray-600 rounded-lg transition min-w-[140px] sm:min-w-0"
               >
-                {social.icon}
-                {social.name}
+                <span className="w-6 h-6 mr-2 flex items-center justify-center">{social.icon}</span>
+                <span className="text-sm sm:text-base">{social.name}</span>
               </a>
             ))}
           </motion.div>

@@ -89,6 +89,10 @@ canvas {
 body {
   margin: 0;
   overflow-x: hidden;
+  /* Performance optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
 }
 
 
@@ -117,4 +121,74 @@ header {
   backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Swiper styles for better project navigation */
+.project-swiper .swiper-button-next,
+.project-swiper .swiper-button-prev {
+  display: none; /* Hide default navigation - using custom buttons */
+}
+
+.project-swiper .swiper-pagination-bullet {
+  @apply bg-white/60 w-2 h-2;
+}
+
+.project-swiper .swiper-pagination-bullet-active {
+  @apply bg-blue-400;
+}
+
+.project-swiper .swiper-pagination {
+  bottom: 8px !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .animate-soft-pulse {
+    animation: none; /* Reduce animations on mobile for better performance */
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Improve touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Custom breakpoint for extra small screens */
+@media (max-width: 480px) {
+  .xs\:inline {
+    display: inline;
+  }
+}
+
+/* Performance optimization classes */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.optimize-rendering {
+  contain: layout style paint;
+}
+
+.lazy-image {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
