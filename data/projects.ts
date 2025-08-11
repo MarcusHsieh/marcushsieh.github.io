@@ -84,7 +84,7 @@ export const projects: Project[] = [
     longDescription: "Designed complete chassis in SOLIDWORKS featuring 6-leg 4-bar linkage system, implementing tolerance analysis for threads and joint clearances, with assembly modeling to verify component fit. Manufactured and assembled complete hexapod through 50+ hours of 3D printing and 15+ hours of careful mechanical assembly including heat-pressed threaded inserts and fastening all components. Engineered distributed control architecture with K64F to ESP32, implementing 3-byte SPI protocol for real-time control. Designed 12-servo coordination system using PCA9685 PWM driver controlled by ESP32 for tripod gait locomotion. Implemented MPU6050 IMU with Mahony AHRS filter (10Hz), dual VL53L0X ToF sensors for obstacle detection (30-2000mm range), and ADC photoresistor for time-of-day detection.",
     images: [],
     github: "https://github.com/MarcusHsieh/SpiderBot",
-    tags: ["C", "K64F", "ESP32", "PCA9685", "SPI", "I2C", "Arduino", "SOLIDWORKS", "3D Printing"],
+    tags: ["C", "K64F", "ESP32", "PCA9685", "SPI", "I2C", "UART", "SOLIDWORKS", "3D Printing"],
   }),
 
   createProject({
@@ -107,11 +107,11 @@ export const projects: Project[] = [
 
   createProject({
     title: "Racer 3000",
-    description: "High-performance racing simulation and control system with advanced vehicle dynamics.",
-    longDescription: "Advanced racing simulation system featuring realistic vehicle dynamics, physics-based handling, and competitive timing systems. Built with emphasis on performance optimization and realistic driving mechanics for an immersive racing experience.",
+    description: "Embedded Arduino racing game with dual LCD displays, optimized for memory-constrained hardware.",
+    longDescription: "Custom Arduino racing game built entirely in C without external libraries. Features 480x320 SPI LCD for main display with optimized screen refreshing algorithms for fast frame rates. Includes joystick controls, secondary 2x16 character LCD (1602) for score display controlled via shift register for pin expansion, and passive buzzer for car sound effects. Extensively optimized for Arduino's limited memory constraints while maintaining smooth gameplay performance.",
     images: [],
     github: "",
-    tags: ["Game Development", "Physics Simulation", "C++", "Real-time Systems"],
+    tags: ["Arduino", "C", "SPI", "LCD", "Embedded Systems", "Memory Optimization", "Game Development", "Shift Register"],
   }),
 
   // AI/ML Projects
