@@ -14,7 +14,7 @@ export default function Home() {
       <main className="min-h-screen bg-gradient-to-b from-gray-900/90 via-gray-800/90 to-gray-900/90 relative z-10">
         
         {/* me */}
-        <section id="hero" className="relative pt-24 scroll-mt-24 overflow-hidden">
+        <section id="hero" className="relative pt-16 scroll-mt-24 overflow-hidden">
           <ParticleNetwork />
           <Hero />
         </section>

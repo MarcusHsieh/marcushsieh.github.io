@@ -110,8 +110,8 @@ export const dynamicImport = async <T>(
   fallback?: T
 ): Promise<T> => {
   try {
-    const module = await importFunction();
-    return module.default;
+    const moduleResult = await importFunction();
+    return moduleResult.default;
   } catch (error) {
     console.warn('Dynamic import failed, using fallback:', error);
     return fallback as T;
@@ -205,8 +205,8 @@ export const generatePerformanceReport = () => {
     
     const report = {
       pageLoad: {
-        domContentLoaded: performanceEntries.domContentLoadedEventEnd - performanceEntries.navigationStart,
-        fullyLoaded: performanceEntries.loadEventEnd - performanceEntries.navigationStart,
+        domContentLoaded: performanceEntries.domContentLoadedEventEnd - performanceEntries.fetchStart,
+        fullyLoaded: performanceEntries.loadEventEnd - performanceEntries.fetchStart,
         firstPaint: paintEntries.find(entry => entry.name === 'first-paint')?.startTime || 0,
         firstContentfulPaint: paintEntries.find(entry => entry.name === 'first-contentful-paint')?.startTime || 0,
       },

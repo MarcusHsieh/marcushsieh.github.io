@@ -5,8 +5,13 @@ const getFileExtension = (filename: string): string => {
   return filename.split('.').pop()?.toLowerCase() || '';
 };
 
-// Helper function to determine media type based on file extension
+// Helper function to determine media type based on file extension or URL
 const getMediaType = (filename: string): 'image' | 'video' => {
+  // Check if it's a YouTube URL
+  if (filename.includes('youtube.com') || filename.includes('youtu.be')) {
+    return 'video';
+  }
+  
   const extension = getFileExtension(filename);
   const videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi'];
   const imageExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'heic', 'avif'];
@@ -27,6 +32,11 @@ const shouldConvertToWebP = (filename: string): boolean => {
 export const createMediaFromFiles = (projectFolder: string, filenames: string[]): MediaItem[] => {
   return filenames
     .filter(filename => {
+      // Allow YouTube URLs to pass through
+      if (filename.includes('youtube.com') || filename.includes('youtu.be')) {
+        return true;
+      }
+      // Check file extensions for local files
       const ext = getFileExtension(filename);
       return ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'heic', 'avif', 'mp4', 'webm', 'ogg', 'mov', 'avi'].includes(ext);
     })
@@ -42,13 +52,14 @@ export const createMediaFromFiles = (projectFolder: string, filenames: string[])
           needsOptimization: false
         };
       } else {
-        // Video handling
+        // Video handling - support both local files and YouTube URLs
+        const isYouTubeUrl = filename.includes('youtube.com') || filename.includes('youtu.be');
         return {
           type: 'video' as const,
-          src: `/${projectFolder}/${filename}`,
+          src: isYouTubeUrl ? filename : `/${projectFolder}/${filename}`,
           alt: `${projectFolder} video`,
-          // For videos, try to find a thumbnail with similar name
-          thumbnail: `/${projectFolder}/${filename.replace(/\.[^/.]+$/, '')}-thumb.webp`
+          // For local videos, try to find a thumbnail with similar name
+          thumbnail: isYouTubeUrl ? undefined : `/${projectFolder}/${filename.replace(/\.[^/.]+$/, '')}-thumb.webp`
         };
       }
     });
@@ -71,39 +82,46 @@ export const autoLoadProjectMedia = (projectFolder: string, manualFiles?: string
 // All images converted to optimal WebP format for performance
 export const PROJECT_MEDIA_CONFIG: Record<string, string[]> = {
   // Recent Hackathon Projects - match actual directory names
-  'navaid': ['20250525_053857815_iOS.webp', '20250525_053910355_iOS.webp', '20250525_191654191_iOS.webp', 'screenshot-1.webp', 'screenshot-2.webp', '20250531_090420000_iOS.MOV'],
+  'navaid': ['20250525_191654191_iOS.webp', 'https://youtube.com/shorts/zK7b1FBi-qA?feature=share', '20250525_053857815_iOS.webp', '20250525_053910355_iOS.webp', 'screenshot-1.webp', 'screenshot-2.webp'],
   'kerminator': [
-    'image-1.webp',
     'image-2.webp', 
     'image-3.webp',
     'image-4.webp',
     'image-5.webp',
     'image-6.webp',
+    'image-1.webp',
     'image.webp'
   ],
   
   // Major Projects
   'spiderbot': [
+    '20250603_094724297_iOS.webp','https://youtu.be/QBBDtACvIJA','20250616_002951735_iOS.webp', '20250520_140927041_iOS.webp', 
+    '20250602_135119599_iOS.webp', '20250602_171243548_iOS.webp',
+    '20250603_094710012_iOS.webp', 
+    'hardware design.webp', 'initial design.webp',
+    
     'screenshot-1.webp', 'screenshot-2.webp', 'screenshot-3.webp', 'screenshot-4.webp', 'screenshot-5.webp',
     'screenshot-6.webp', 'screenshot-7.webp', 'screenshot-8.webp', 'screenshot-9.webp',
-    'hardware design.webp', 'initial design.webp',
-    '20250520_140927041_iOS.webp', '20250602_135119599_iOS.webp', '20250602_171243548_iOS.webp',
-    '20250603_094710012_iOS.webp', '20250603_094724297_iOS.webp', '20250616_002951735_iOS.webp'
+    
+     
   ],
   'bin-boy': [
-    '20250419_202548781_iOS.webp', '20250420_090007118_iOS.webp', '20250420_145907750_iOS.webp',
-    '20250420_223759476_iOS.webp', '20250420_223842023_iOS.webp', '20250420_223859613_iOS.webp',
+    '20250420_223759476_iOS.webp', 'https://youtu.be/HBXxpM15ICc','20250420_223842023_iOS.webp', '20250420_223859613_iOS.webp',
     '20250420_223919076_iOS.webp', '20250420_224008494_iOS.webp', '20250609_161601669_iOS.webp',
-    'bin boy mvt.mp4'
+    '20250419_202548781_iOS.webp',  '20250420_090007118_iOS.webp', '20250420_145907750_iOS.webp',
+    
+    
   ],
   'moll-e-autonomous-shopping-cart': [
-    'shopping-cart.webp', 'navigation.webp', 'img1.webp', 'img3.webp', 'img5.webp',
-    '20250407_000817416_iOS.webp', '20250407_000923693_iOS.webp', '20250407_000946051_iOS.webp',
+    
+    '20250407_000946051_iOS.webp',
+    'https://youtube.com/shorts/_Nyhs1IdiAM?feature=share','20250407_000923693_iOS.webp', '20250407_000817416_iOS.webp', 
     '20250407_001116820_iOS.webp', '20250407_001146808_iOS.webp', '20250407_001304693_iOS.webp',
-    '20250406_213238000_iOS.MOV'
+    'shopping-cart.webp', 'navigation.webp', 'img1.webp', 'img3.webp', 'img5.webp',
+    
   ],
-  'racer-3000': ['racer-image-1.webp', 'racer-image-2.webp', 'mhsie026_custom_lab_final_demo.mp4'],
-  
+  'racer-3000': ['racer-image-1.webp', 'https://youtu.be/31bKQ1JUeco', 'racer-image-2.webp'],
+
   // AI/ML Projects
   'yumtogether': ['image-1.webp', 'yum-together.webp'],
   'moonify': ['image-1.webp', 'image-2.webp', 'space.webp'],

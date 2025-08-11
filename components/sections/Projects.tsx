@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "components/ui/card";
-import { Github, ExternalLink, Eye, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, ExternalLink, Eye, ChevronLeft, ChevronRight, Video } from "lucide-react";
 import { Button } from "components/ui/button";
 import { projects } from "data/projects";
 import Link from "next/link";
@@ -120,6 +120,7 @@ function ProjectCard({ project, scrollDirection, onOpenModal }: {
 }) {
   const [hovered, setHovered] = useState(false);
   const animation = createDirectionalAnimation(scrollDirection);
+  const hasVideo = project.media?.some(item => item.type === 'video');
   
   return (
     <motion.div
@@ -131,12 +132,19 @@ function ProjectCard({ project, scrollDirection, onOpenModal }: {
     >
       <Card className="relative flex flex-col overflow-hidden bg-gray-800/60 backdrop-blur-sm border-gray-700 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 h-full">
         <AnimatedImageContainer hovered={hovered}>
-          <ImageCarousel 
-            images={project.media?.filter(m => m.type === 'image').map(m => m.src) || project.images} 
-            title={project.title} 
-            onClick={() => onOpenModal(project)}
-            projectId={project.title.toLowerCase().replace(/\s+/g, '-')}
-          />
+          <div className="relative">
+            <ImageCarousel 
+              images={project.media?.filter(m => m.type === 'image').map(m => m.src) || project.images} 
+              title={project.title} 
+              onClick={() => onOpenModal(project)}
+              projectId={project.title.toLowerCase().replace(/\s+/g, '-')}
+            />
+            {hasVideo && (
+              <div className="absolute top-2 right-2 bg-red-500/90 text-white p-1.5 rounded-full z-30">
+                <Video className="w-4 h-4" />
+              </div>
+            )}
+          </div>
         </AnimatedImageContainer>
         <div className="flex flex-col justify-between p-6 flex-grow">
           <div>
@@ -205,7 +213,7 @@ export default function Projects() {
 
   return (
     <>
-      <section className="py-12 sm:py-16 md:py-20 px-4" id="projects">
+      <section className="py-8 sm:py-12 md:py-16 px-4" id="projects">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             {...createDirectionalAnimation(scrollDirection)}
@@ -220,7 +228,7 @@ export default function Projects() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-center text-sm text-gray-400 mb-8"
           >
-            Click "View Details" for expanded gallery with zoom • Navigate images with arrows
+            Click &quot;View Details&quot; for expanded gallery with zoom • Navigate images with arrows • Red video icon indicates demo video
           </motion.p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">

@@ -5,10 +5,29 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "components/ui/badge";
 import { Button } from "components/ui/button";
-import { X, Github, ExternalLink, ZoomIn, ZoomOut, Play, Grid3X3 } from "lucide-react";
+import { X, Github, ExternalLink, ZoomIn, ZoomOut, Play, Grid3X3, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Project, MediaItem } from "types";
+
+// Utility function to convert YouTube URL to embed URL
+const getYouTubeEmbedUrl = (url: string): string => {
+  if (url.includes('youtu.be/')) {
+    const videoId = url.split('youtu.be/')[1].split('?')[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  } else if (url.includes('youtube.com/watch')) {
+    const videoId = new URL(url).searchParams.get('v');
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+  } else if (url.includes('youtube.com/shorts/')) {
+    const videoId = url.split('/shorts/')[1].split('?')[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+  return url;
+};
+
+const isYouTubeUrl = (url: string): boolean => {
+  return url.includes('youtube.com') || url.includes('youtu.be');
+};
 
 interface ProjectModalProps {
   project: Project | null;
@@ -76,17 +95,27 @@ function GalleryViewer({
             </>
           ) : (
             <>
-              <video
-                src={media.src}
-                poster={media.thumbnail}
-                className="w-full h-full object-cover"
-                controls
-                preload="metadata"
-                onClick={handleVideoClick}
-              />
-              <div className="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs flex items-center gap-1 pointer-events-none">
+              {isYouTubeUrl(media.src) ? (
+                <iframe
+                  src={getYouTubeEmbedUrl(media.src)}
+                  className="w-full h-full object-cover"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <video
+                  src={media.src}
+                  poster={media.thumbnail}
+                  className="w-full h-full object-cover"
+                  controls
+                  preload="metadata"
+                  onClick={handleVideoClick}
+                />
+              )}
+              <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-xs flex items-center gap-1 pointer-events-none">
                 <Play className="w-3 h-3" />
-                Video
+                {isYouTubeUrl(media.src) ? 'YouTube' : 'Video'}
               </div>
             </>
           )}
@@ -131,16 +160,26 @@ function MediaViewer({
         </div>
       ) : (
         <div className="relative w-full h-[40vh] bg-gray-900 rounded-lg overflow-hidden flex items-center justify-center">
-          <video
-            src={currentMedia.src}
-            poster={currentMedia.thumbnail}
-            controls
-            className="w-full h-full object-contain"
-            preload="metadata"
-          />
-          <div className="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs flex items-center gap-1">
+          {isYouTubeUrl(currentMedia.src) ? (
+            <iframe
+              src={getYouTubeEmbedUrl(currentMedia.src)}
+              className="w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <video
+              src={currentMedia.src}
+              poster={currentMedia.thumbnail}
+              controls
+              className="w-full h-full object-contain"
+              preload="metadata"
+            />
+          )}
+          <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-xs flex items-center gap-1">
             <Play className="w-3 h-3" />
-            Video
+            {isYouTubeUrl(currentMedia.src) ? 'YouTube' : 'Video'}
           </div>
         </div>
       )}
@@ -388,7 +427,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
       setCurrentMediaIndex(0);
       setZoomImage(null); // Clear any previous zoom modal state
     }
-  }, [isOpen, project?.title]); // Reset when project changes
+  }, [isOpen, project]); // Reset when project changes
 
   // Prevent body scroll when modal is open
   React.useEffect(() => {

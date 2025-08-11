@@ -29,7 +29,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12">
+    <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 py-8">
       <Card className="max-w-4xl w-full bg-gray-800/60 backdrop-blur-sm border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
