@@ -6,6 +6,12 @@ export const glbModels = [
         description: "Full movable V6 engine assembly with pistons, crankshaft, and more.",
     },
     {
+        id: "model4",
+        name: "Spiderbot",
+        fileUrl: "/models/spiderbot-full-v0.1.glb",
+        description: "Fully defined and assembled spiderbot equipped with all MCUs, sensors, and servos.",
+    },
+    {
         id: "model2",
         name: "Front Wing",
         fileUrl: "/models/front-wing.glb",
@@ -17,6 +23,7 @@ export const glbModels = [
         fileUrl: "/models/drone-v1.0.glb",
         description: "Assembled quadrotor drone with PDB, Raspberry Pi, camera, motors, and 5-inch propellers. Includes a modular X-frame design with detachable arms.",
     },
+    
     // {
     //     id: "model3",
     //     name: "car with flow sim?",

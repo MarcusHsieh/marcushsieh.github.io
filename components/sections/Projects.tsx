@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "components/ui/card";
-import { Github, ExternalLink, Eye, ChevronLeft, ChevronRight, Video } from "lucide-react";
+import { Github, ExternalLink, Eye, ChevronLeft, ChevronRight, Video, Trophy } from "lucide-react";
 import { Button } from "components/ui/button";
 import { projects } from "data/projects";
 import Link from "next/link";
@@ -139,17 +139,37 @@ function ProjectCard({ project, scrollDirection, onOpenModal }: {
               onClick={() => onOpenModal(project)}
               projectId={project.title.toLowerCase().replace(/\s+/g, '-')}
             />
-            {hasVideo && (
-              <div className="absolute top-2 right-2 bg-red-500/90 text-white p-1.5 rounded-full z-30">
-                <Video className="w-4 h-4" />
-              </div>
-            )}
+            <div className="absolute top-2 right-2 flex flex-col gap-2 z-30">
+              {project.hackathon && (
+                <div className="bg-yellow-500/90 text-white p-1.5 rounded-full" title={`${project.hackathon.achievement} at ${project.hackathon.event}`}>
+                  <Trophy className="w-4 h-4" />
+                </div>
+              )}
+              {hasVideo && (
+                <div className="bg-red-500/90 text-white p-1.5 rounded-full">
+                  <Video className="w-4 h-4" />
+                </div>
+              )}
+            </div>
           </div>
         </AnimatedImageContainer>
         <div className="flex flex-col justify-between p-6 flex-grow">
           <div>
             <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
             <p className="text-gray-300 mb-4">{project.description}</p>
+            {project.hackathon && (
+              <div className="mb-4 p-3 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Trophy className="w-4 h-4 text-yellow-400" />
+                  <span className="text-yellow-400 font-semibold text-sm">
+                    {project.hackathon.achievement}
+                  </span>
+                </div>
+                <p className="text-yellow-300/80 text-xs mt-1">
+                  {project.hackathon.event}
+                </p>
+              </div>
+            )}
             <div className="flex flex-wrap gap-2 mb-4">
               {project.tags.map((tag, tagIndex) => (
                 <span key={tagIndex} className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">

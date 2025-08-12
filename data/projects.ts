@@ -26,15 +26,27 @@ function createProject({
     achievement: string;
   };
 }): Project {
+  // Helper function to ensure description ends with proper punctuation
+  const formatDescription = (desc: string): string => {
+    const trimmed = desc.trim();
+    if (!trimmed.endsWith('.') && !trimmed.endsWith('!') && !trimmed.endsWith('?')) {
+      return trimmed + '.';
+    }
+    return trimmed;
+  };
+
+  const finalDescription = formatDescription(description);
+
   const baseProject: Project = {
     title,
-    description: hackathon ? `${description} ${hackathon.achievement} at ${hackathon.event}` : description,
+    description: finalDescription,
     longDescription,
     images,
     media: getProjectMedia(title.toLowerCase().replace(/[\s-]+/g, '-')),
     github,
     demo,
     tags,
+    hackathon,
   };
 
   // Add video to media if provided
@@ -50,7 +62,31 @@ function createProject({
 }
 
 export const projects: Project[] = [
-  // Recent Hackathon Projects
+  createProject({
+    title: "SpiderBot",
+    description: "Complete hexapod robot with 6-leg 4-bar linkage system, distributed control architecture, and advanced sensor integration. See mechanical section for interactive assembly.",
+    longDescription: "Designed complete chassis in SOLIDWORKS featuring 6-leg 4-bar linkage system, implementing tolerance analysis for threads and joint clearances, with assembly modeling to verify component fit. Manufactured and assembled complete hexapod through 50+ hours of 3D printing and 15+ hours of careful mechanical assembly including heat-pressed threaded inserts and fastening all components. Engineered distributed control architecture with K64F to ESP32, implementing 3-byte SPI protocol for real-time control. Designed 12-servo coordination system using PCA9685 PWM driver controlled by ESP32 for tripod gait locomotion. Implemented MPU6050 IMU with Mahony AHRS filter (10Hz), dual VL53L0X ToF sensors for obstacle detection (30-2000mm range), and ADC photoresistor for time-of-day detection.",
+    images: [],
+    github: "https://github.com/MarcusHsieh/SpiderBot",
+    tags: ["C", "K64F", "ESP32", "PCA9685", "SPI", "I2C", "UART", "SOLIDWORKS", "3D Printing"],
+  }),
+  createProject({
+    title: "Bin Boy",
+    description: "WIP autonomous trash can with computer vision-based person tracking and voice command system.",
+    longDescription: "Developing fully autonomous trash can with computer vision-based person tracking housed in custom 3D-printed chassis designed for sensor integration. Optimized computer vision pipeline using GStreamer and cv_bridge, achieving 30 FPS CPU-based person tracking with MobileNet-SSD, migrating to NVIDIA DeepStream for GPU acceleration. Implementing user-specific tracking via clothing recognition and gesture commands. Designing voice command system for hands-free operation with onboard processing.",
+    images: [],
+    github: "https://github.com/MarcusHsieh/bin-boy",
+    tags: ["Jetson Nano", "ROS2", "C++", "Python", "ESP32", "PID Motor Control", "Computer Vision"],
+  }),
+  createProject({
+    title: "MOLL-E Autonomous Shopping Cart",
+    description: "WIP small-scale autonomous shopping cart with planned SLAM-based navigation and multi-sensor fusion.",
+    longDescription: "Building small-scale autonomous shopping cart with planned SLAM-based navigation, modifying existing cart chassis with custom motor mounts and sensor integration. Integrating multi-sensor fusion (camera, ultrasonic, IMU) for obstacle avoidance and environmental mapping. Developing hybrid navigation system to support both pre-mapped routes and dynamic user following via BLE. Designed custom motor replacement system and sensor mounting solutions for commercial cart modification.",
+    images: [], 
+    github: "https://github.com/MarcusHsieh/MOLL-E",
+    tags: ["Jetson Nano", "ROS2", "Python", "Docker", "ESP32", "BLE", "PID Control", "SLAM"],
+  }),
+
   createProject({
     title: "NavAid",
     description: "Visually impaired navigation system with 2D LiDAR obstacle detection and LED belt warnings.",
@@ -77,34 +113,6 @@ export const projects: Project[] = [
     }
   }),
 
-  // Major Projects
-  createProject({
-    title: "SpiderBot",
-    description: "Complete hexapod robot with 6-leg 4-bar linkage system, distributed control architecture, and advanced sensor integration.",
-    longDescription: "Designed complete chassis in SOLIDWORKS featuring 6-leg 4-bar linkage system, implementing tolerance analysis for threads and joint clearances, with assembly modeling to verify component fit. Manufactured and assembled complete hexapod through 50+ hours of 3D printing and 15+ hours of careful mechanical assembly including heat-pressed threaded inserts and fastening all components. Engineered distributed control architecture with K64F to ESP32, implementing 3-byte SPI protocol for real-time control. Designed 12-servo coordination system using PCA9685 PWM driver controlled by ESP32 for tripod gait locomotion. Implemented MPU6050 IMU with Mahony AHRS filter (10Hz), dual VL53L0X ToF sensors for obstacle detection (30-2000mm range), and ADC photoresistor for time-of-day detection.",
-    images: [],
-    github: "https://github.com/MarcusHsieh/SpiderBot",
-    tags: ["C", "K64F", "ESP32", "PCA9685", "SPI", "I2C", "UART", "SOLIDWORKS", "3D Printing"],
-  }),
-
-  createProject({
-    title: "Bin Boy",
-    description: "Fully autonomous trash can with computer vision-based person tracking and voice command system.",
-    longDescription: "Developing fully autonomous trash can with computer vision-based person tracking housed in custom 3D-printed chassis designed for sensor integration. Optimized computer vision pipeline using GStreamer and cv_bridge, achieving 30 FPS CPU-based person tracking with MobileNet-SSD, migrating to NVIDIA DeepStream for GPU acceleration. Implementing user-specific tracking via clothing recognition and gesture commands. Designing voice command system for hands-free operation with onboard processing.",
-    images: [],
-    github: "https://github.com/MarcusHsieh/bin-boy",
-    tags: ["Jetson Nano", "ROS2", "C++", "Python", "ESP32", "PID Motor Control", "Computer Vision"],
-  }),
-
-  createProject({
-    title: "MOLL-E Autonomous Shopping Cart",
-    description: "Small-scale autonomous shopping cart with planned SLAM-based navigation and multi-sensor fusion.",
-    longDescription: "Building small-scale autonomous shopping cart with planned SLAM-based navigation, modifying existing cart chassis with custom motor mounts and sensor integration. Integrating multi-sensor fusion (camera, ultrasonic, IMU) for obstacle avoidance and environmental mapping. Developing hybrid navigation system to support both pre-mapped routes and dynamic user following via BLE. Designed custom motor replacement system and sensor mounting solutions for commercial cart modification.",
-    images: [], 
-    github: "https://github.com/MarcusHsieh/MOLL-E",
-    tags: ["Jetson Nano", "ROS2", "Python", "Docker", "ESP32", "BLE", "PID Control", "SLAM"],
-  }),
-
   createProject({
     title: "Racer 3000",
     description: "Embedded Arduino racing game with dual LCD displays, optimized for memory-constrained hardware.",
@@ -114,7 +122,6 @@ export const projects: Project[] = [
     tags: ["Arduino", "C", "SPI", "LCD", "Embedded Systems", "Memory Optimization", "Game Development", "Shift Register"],
   }),
 
-  // AI/ML Projects
   createProject({
     title: "YumTogether",
     description: "Privacy-first health counseling platform using containerized local LLM, avoiding cloud data exposure.",
@@ -140,7 +147,6 @@ export const projects: Project[] = [
     }
   }),
 
-  // Development Tools
   createProject({
     title: "Labeling Tool",
     description: "A labeling tool for intuitive annotation of image datasets with bounding boxes and classification tags, streamlining dataset preparation for computer vision projects.",
@@ -157,7 +163,6 @@ export const projects: Project[] = [
     tags: ["Python", "Flask", "Raspberry Pi", "HTML", "CSS"],
   }),
 
-  // Games & Software
   createProject({
     title: "Chess Crusaders",
     description: "A fully published ASCII chess fighting game, implementing SOLID principles and advanced OOP, optimized with data structures and algorithms.",

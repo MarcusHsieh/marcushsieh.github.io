@@ -16,6 +16,10 @@ export interface Project {
   github: string;
   demo: string;
   tags: string[];
+  hackathon?: {
+    event: string;
+    achievement: string;
+  };
 }
 
 export interface SocialLink {

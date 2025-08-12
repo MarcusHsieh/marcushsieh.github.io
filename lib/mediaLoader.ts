@@ -95,7 +95,7 @@ export const PROJECT_MEDIA_CONFIG: Record<string, string[]> = {
   
   // Major Projects
   'spiderbot': [
-    '20250603_094724297_iOS.webp','https://youtu.be/QBBDtACvIJA','20250616_002951735_iOS.webp', '20250520_140927041_iOS.webp', 
+    'spiderbot-full.png','https://youtu.be/QBBDtACvIJA','20250603_094724297_iOS.webp','20250616_002951735_iOS.webp', '20250520_140927041_iOS.webp', 
     '20250602_135119599_iOS.webp', '20250602_171243548_iOS.webp',
     '20250603_094710012_iOS.webp', 
     'hardware design.webp', 'initial design.webp',

@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "components/ui/badge";
 import { Button } from "components/ui/button";
-import { X, Github, ExternalLink, ZoomIn, ZoomOut, Play, Grid3X3, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Github, ExternalLink, ZoomIn, ZoomOut, Play, Grid3X3, ChevronLeft, ChevronRight, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Project, MediaItem } from "types";
@@ -589,6 +589,24 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                   <p className="text-gray-300 leading-relaxed">
                     {project.longDescription || project.description}
                   </p>
+                  
+                  {/* Hackathon Achievement */}
+                  {project.hackathon && (
+                    <div className="p-4 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Trophy className="w-5 h-5 text-yellow-400" />
+                        <span className="text-yellow-400 font-semibold">
+                          Hackathon Achievement
+                        </span>
+                      </div>
+                      <p className="text-yellow-300 font-medium mb-1">
+                        {project.hackathon.achievement}
+                      </p>
+                      <p className="text-yellow-300/80 text-sm">
+                        {project.hackathon.event}
+                      </p>
+                    </div>
+                  )}
                   
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, index) => (
