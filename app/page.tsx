@@ -20,30 +20,16 @@ export default function Home() {
         </section>
 
         {/* technical */}
-        <motion.section
-          id="technical"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
-          className="relative overflow-hidden"
-        >
+        <section id="technical" className="relative overflow-hidden">
           <ParticleNetwork />
           <Projects />
-        </motion.section>
+        </section>
 
         {/* mechanical */}
-        <motion.section
-          id="mechanical"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1], delay: 0.2 }}
-          className="relative overflow-hidden"
-        >
+        <section id="mechanical" className="relative overflow-hidden">
           <ParticleNetwork />
           <GLBPortfolio />
-        </motion.section>
+        </section>
 
         {/* contact */}
         <section id="contact" className="relative overflow-hidden">

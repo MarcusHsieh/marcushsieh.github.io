@@ -65,14 +65,14 @@ export const createDirectionalAnimation = (scrollDirection: 'up' | 'down' | null
     return {
       initial: { opacity: 0, y: 80 },
       whileInView: { opacity: 1, y: 0 },
-      viewport: { once: true, amount: 0.3 },
+      viewport: { once: true, amount: 0.2 },
       transition: { duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }
     };
   } else if (scrollDirection === 'up') {
     return {
       initial: { opacity: 0, y: -80 },
       whileInView: { opacity: 1, y: 0 },
-      viewport: { once: false, amount: 0.3 }, // Re-animate when scrolling back up
+      viewport: { once: false, amount: 0.2 }, // Re-animate when scrolling back up
       transition: { duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }
     };
   }
@@ -81,7 +81,7 @@ export const createDirectionalAnimation = (scrollDirection: 'up' | 'down' | null
   return {
     initial: { opacity: 0, y: 60 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
+    viewport: { once: true, amount: 0.2 },
     transition: { duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }
   };
 };
